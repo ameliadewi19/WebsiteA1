@@ -388,7 +388,7 @@ a:focus {
 }
 
 #navbarmain {
-  padding: 70px 0px;
+  padding: 20px 0px;
 }
 
 #navbarmain .nav-link {
@@ -399,6 +399,10 @@ a:focus {
   text-transform: capitalize;
   font-size: 16px;
   transition: all .25s ease;
+}
+
+#navbarmain .nav-link.active{
+  color: #e12454;
 }
 
 .dropdown-toggle::after {
