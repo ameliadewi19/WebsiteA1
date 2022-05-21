@@ -191,7 +191,26 @@
 			</div>
 		</div>
 
-		
+		<div class="row mt-5">
+			<div class="col-lg-4">
+				<div class="text-center">
+					<div class="counter text-md fw-bold" data-target="9346">0</div>
+					<div class="counter_text text-md fw-bold">Total Tender</div>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="text-center">
+					<div class="counter text-md fw-bold" data-target="8068">0</div>
+					<div class="counter_text text-md fw-bold">Tender Selesai</div>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="text-center">
+					<div class="counter text-md fw-bold" data-target="11840">0</div>
+					<div class="counter_text text-md fw-bold">Peserta Tender</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </section>
 <!-- <canvas id="myChart"></canvas> -->
@@ -260,7 +279,29 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>    
     
     <script src="js/script.js"></script>
-    <script src="js/contact.js"></script>
+	<script src="js/contact.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script> 
+	<script src="URL of jquery.counterup.min.js"></script> 
+
+	<!-- Counter -->
+	<script>
+		const counters = document.querySelectorAll('.counter');
+
+		counters.forEach(counter => {
+			const updateCount = () => {
+				const target = +counter.getAttribute('data-target');
+				const count = +counter.innerText;
+				if(count < target){
+					counter.innerText = count + 1;
+					setTimeout(updateCount, 10);
+				} else{
+					count.innerText = target
+				}
+			}
+			updateCount();
+		});
+	</script>
+
     <script>
 		var ctx = document.getElementById("myChart").getContext("2d");
 		var chart = new Chart (ctx, {
