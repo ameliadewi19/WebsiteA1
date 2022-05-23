@@ -185,20 +185,23 @@
 		<div class="row mt-5">
 			<div class="col-lg-4">
 				<div class="text-center">
-					<div class="counter text-md fw-bold" data-target="9346">0</div>
-					<div class="counter_text text-md fw-bold">Total Tender</div>
+					<img src="images/icon/icon-tender.png" width="80px">
+					<div class="counter text-md mt-3" data-target="9346">0</div>
+					<div class="counter_text">Total Tender</div>
 				</div>
 			</div>
 			<div class="col-lg-4">
 				<div class="text-center">
-					<div class="counter text-md fw-bold" data-target="8068">0</div>
-					<div class="counter_text text-md fw-bold">Tender Selesai</div>
+					<img src="images/icon/icon-tenderselesai.png" width="80px">
+					<div class="counter text-md mt-3" data-target="8068">0</div>
+					<div class="counter_text">Tender Selesai</div>
 				</div>
 			</div>
 			<div class="col-lg-4">
 				<div class="text-center">
-					<div class="counter text-md fw-bold" data-target="11840">0</div>
-					<div class="counter_text text-md fw-bold">Peserta Tender</div>
+					<img src="images/icon/icon-participant.png" width="80px">
+					<div class="counter text-md mt-3" data-target="11840">0</div>
+					<div class="counter_text">Peserta Tender</div>
 				</div>
 			</div>
 		</div>
@@ -284,7 +287,7 @@
 				const count = +counter.innerText;
 				if(count < target){
 					counter.innerText = count + 1;
-					setTimeout(updateCount, 0.5);
+					setTimeout(updateCount, 0.01);
 				} else{
 					count.innerText = target
 				}
