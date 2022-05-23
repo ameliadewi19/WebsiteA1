@@ -190,7 +190,6 @@
 				<div><canvas id="myChart3" width="600" height="200"></canvas></div>
 			</div>
 		</div>
-
 		<div class="row mt-5">
 			<div class="col-lg-4">
 				<div class="text-center">
@@ -293,7 +292,7 @@
 				const count = +counter.innerText;
 				if(count < target){
 					counter.innerText = count + 1;
-					setTimeout(updateCount, 10);
+					setTimeout(updateCount, 0.5);
 				} else{
 					count.innerText = target
 				}
