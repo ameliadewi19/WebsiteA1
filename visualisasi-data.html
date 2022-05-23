@@ -24,6 +24,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.14.3/dist/xlsx.full.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datasource@0.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
  <!--  <script>
 	var ctx = document.getElementById('myChart');
 	var chartGraph = new Chart (ctx, {
@@ -164,15 +165,6 @@
 			</div>
 		</div>
 
-		<!-- <div class="row mt-5">
-			<div class="col-lg-12">
-                <h3 class="text-uppercase">Visualisasi Data Tender dengan Nilai HPS Terbesar </h3>
-                <p class="text-justify"> Berikut ini merupakan hasil visualisasi data tender dengan nilai HPS terbesar.
-                </p>
-				<div><canvas id="myChart4" width="600" height="200"></canvas></div>
-			</div>
-		</div> -->
-
 		<div class="row mt-5">
 			<div class="col-lg-12">
                 <h3 class="text-uppercase">Visualisasi Data Tender Sesuai Jenis Pengadaan</h3>
@@ -304,11 +296,13 @@
     <script>
 		var ctx = document.getElementById("myChart").getContext("2d");
 		var chart = new Chart (ctx, {
-		    type: 'bar',
+		    type: 'line',
 		    data: {
 		        datasets: [{
 		        label: "Jumlah Peserta Tender Tiap Tahun",
-		        backgroundColor: ["#FF00C9","#007CFF","#0BCD01","#F97900","#FAE108","#9408FA","#562C04"]
+		        backgroundColor: 'rgba(255, 99, 132, 0.8)',
+		        fill: false,
+		        borderColor: 'rgba(255, 99, 132, 0.8)' 
 		    }
 			]},
 		    plugins: [ChartDataSource],
@@ -348,10 +342,13 @@
 	<script>
  		var ctx = document.getElementById("myChart2").getContext("2d");
  		var chart = new Chart (ctx, {
-		    type: 'doughnut',
+		    type: 'bar',
 		    data: {
 		        datasets: [{
-		        backgroundColor: ["#FF00C9","#007CFF","#0BCD01","#F97900","#FAE108","#9408FA","#562C04"]
+		        backgroundColor: 'rgba(75, 192, 192, 0.25)', 
+		        fill: false,
+		        borderWidth: 3,
+		        borderColor: 'rgba(75, 192, 192, 1)' 
 		    }
 			]},
 		    plugins: [ChartDataSource],
@@ -360,6 +357,23 @@
 				display: true,
 				fontSize: 30,
 	        },
+	        scales: {
+                    xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true
+                            }
+                        }],
+                    yAxes: [{
+                            display: true,
+                            ticks: {
+                                beginAtZero: true,
+                                min: 0,
+                                steps: 2,
+                                max: 12
+                            }
+                        }]
+                },
 			plugins: {
 				datasource: {
 					url: 'dataVisualisasi.xlsx',
@@ -367,7 +381,7 @@
 						datasetLabels: "'Sheet4'!A1",
 						indexLabels: "'Sheet4'!A3:A7",
 						data: "'Sheet4'!B3:B7"
-					}
+					},
 				}
 			}
 		});
@@ -375,10 +389,12 @@
 	<script>
  		var ctx = document.getElementById("myChart3").getContext("2d");
  		var chart = new Chart (ctx, {
-		    type: 'doughnut',
+		    type: 'bar',
 		    data: {
 		        datasets: [{
-		        backgroundColor: ["#FF00C9","#007CFF","#0BCD01","#F97900","#FAE108","#9408FA","#562C04"]
+		        backgroundColor: 'rgba(153, 102, 255, 0.25)',
+		        borderWidth: 3,
+		        borderColor: 'rgba(153, 102, 255, 0.25)'
 		    }
 			]},
 		    plugins: [ChartDataSource],
@@ -400,47 +416,31 @@
 		});
 	</script>
 	<script>
- 		var ctx = document.getElementById("myChart4").getContext("2d");
- 		var chart = new Chart (ctx, {
-		    type: 'horizontalBar',
-		    data: {
-		        datasets: [{
-		        backgroundColor: ["#FF00C9","#007CFF","#0BCD01","#F97900","#FAE108","#9408FA","#562C04"]
-		    }
-			]},
-		    plugins: [ChartDataSource],
-		    options: {
-		    title: {
-				display: true,
-				fontSize: 30,
-	        },
-			plugins: {
-				datasource: {
-					url: 'dataVisualisasi.xlsx',
-						rowMapping: 'index',
-						datasetLabels: "'Sheet2'!A1",
-						indexLabels: "'Sheet2'!A3:A5",
-						data: "'Sheet2'!B3:B5"
-					}
-				}
-			}
-		});
-	</script>
-	<script>
  		var ctx = document.getElementById("myChart5").getContext("2d");
  		var chart = new Chart (ctx, {
-		    type: 'horizontalBar',
+		    type: 'pie',
 		    data: {
 		        datasets: [{
-		        backgroundColor: ["#FF00C9","#007CFF","#0BCD01","#F97900","#FAE108","#9408FA","#562C04"]
+		        backgroundColor: ['#CDB4DB','#FFC8DD','#FFAFCC','#BDE0FE','#A2D2FF'],
+		        borderWidth: 2
 		    }
 			]},
 		    plugins: [ChartDataSource],
 		    options: {
-		    title: {
-				display: true,
+		    	title: {
+					display: true,
 				fontSize: 30,
-	        },
+	        },tooltips: {
+	            callbacks: {
+	                label: function(tooltipItem, data) {
+	                    var dataset = data.datasets[tooltipItem.datasetIndex];
+	                    var labels = data.labels[tooltipItem.index];
+	                    var currentValue = dataset.data[tooltipItem.index];
+	                    return labels+": "+currentValue+" %";
+	                }
+	            }
+	        }
+	        ,		 
 			plugins: {
 				datasource: {
 					url: 'dataVisualisasi.xlsx',
